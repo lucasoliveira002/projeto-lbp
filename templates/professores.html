@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professores</title>
+</head>
+<body>
+    <h1>Professores</h1>
+    <ul> 
+        {% for Teacher in teachers %} 
+            <li>{{ Teacher.name }} - {{ Teacher.email }} - {{ Teacher.idade }} - {{ Teacher.descricao }}</li> 
+        {% endfor %} 
+    </ul>
+</body>
+</html>
