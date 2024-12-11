@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adicionar Professor</title>
+</head>
+<body>
+    <h1>Adicionar Novo Professor</h1>
+    <form action="{{ url_for('professores.add_professores') }}" method="POST">
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="idade">Idade:</label><br>
+        <input type="number" id="idade" name="idade" required><br><br>
+
+        <label for="descricao">Descrição:</label><br>
+        <textarea id="descricao" name="descricao" required></textarea><br><br>
+
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <a href="/professores/professores">Voltar à lista</a>
+</body>
+</html>

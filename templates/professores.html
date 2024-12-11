@@ -9,9 +9,12 @@
     <h1>Professores</h1>
     <ul> 
         {% for Teacher in teachers %} 
-            <li>{{ Teacher.name }} - {{ Teacher.email }} - {{ Teacher.idade }} - {{ Teacher.descricao }}</li> 
+            <li>{{ Teacher.name }} <br> {{ Teacher.email }} <br> {{ Teacher.idade }} <br> {{ Teacher.descricao }} <br><br></li> 
         {% endfor %} 
     </ul>
-    <a href="home.html">Voltar ao Home</a>
+    <a href="/">Voltar ao Home</a> <br>
+    <a href="{{ url_for('professores.add_teacher') }}">Adicionar Novo Professor</a>
+
+
 </body>
 </html>
