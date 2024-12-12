@@ -9,12 +9,28 @@
     <h1>Professores</h1>
     <ul> 
         {% for Teacher in teachers %} 
-            <li>{{ Teacher.name }} <br> {{ Teacher.email }} <br> {{ Teacher.idade }} <br> {{ Teacher.descricao }} <br><br></li> 
+            <li> <b>Nome:</b> {{ Teacher.name }} <br> <b>Email:</b> {{ Teacher.email }} <br> <b>Idade:</b> {{ Teacher.idade }} <br> <b>Descrição:</b> {{ Teacher.descricao }} <br>
+                 <a href="{{ url_for('professores.edit_teacher', id=Teacher.id) }}">Editar</a>
+                {% if session.user_id == Teacher.user_id %}  <!-- Verifica se o usuário é o criador -->
+                    <a href="{{ url_for('professores.delete_teacher', id=Teacher.id) }}">Excluir</a>
+                {% endif %}
+                <br><br>
+            </li> 
         {% endfor %} 
     </ul>
+    <a href="{{ url_for('professores.exibir_formulario_add_teacher') }}">Adicionar Novo Professor</a>
+  <br><br>
+    <div>
+    <h2>Comentários</h2>
+     {% for comment in comments %}
+            <p><strong>{{ comment.user.name }}:</strong> {{ comment.conteudo }}</p>
+        {% endfor %}
+    <form method="post">
+       <textarea name="conteudo" rows="4" cols="50" required></textarea>
+      <br>
+      <button type="submit">Enviar comentário</button>
+    </form>
+  </div>
     <a href="/">Voltar ao Home</a> <br>
-    <a href="{{ url_for('professores.add_teacher') }}">Adicionar Novo Professor</a>
-
-
 </body>
 </html>

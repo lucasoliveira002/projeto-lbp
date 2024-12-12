@@ -17,8 +17,12 @@
                 <p>Seja bem vindo!!!</p>
             </div>
             <div class="registrar">
-                <a href="/login/entrar">Entrar</a> <br>
-                <a href="">Não tem conta?</a>
+                {% if 'user_id' in session %}
+                     <a href="{{ url_for('login.logout') }}">Sair</a>
+                {% else %}
+                  <a href="{{ url_for('login.exibir_formulario') }}">Entrar</a> <br>
+                   <a href="{{ url_for('login.register') }}">Não tem conta?</a>
+                {% endif %}
             </div>
         </div>
     </header>

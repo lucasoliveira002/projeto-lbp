@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Professor</title>
+</head>
+<body>
+    <h1>Editar Professor</h1>
+    <form action="{{ url_for('professores.edit_teacher', id=teacher.id) }}" method="POST">
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name" value="{{ teacher.name }}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ teacher.email }}" required><br><br>
+
+        <label for="idade">Idade:</label><br>
+        <input type="number" id="idade" name="idade" value="{{ teacher.idade }}" required><br><br>
+
+        <label for="descricao">Descrição:</label><br>
+        <textarea id="descricao" name="descricao" required>{{ teacher.descricao }}</textarea><br><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="/professores/professores">Voltar à lista</a>
+</body>
+</html>

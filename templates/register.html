@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criar Conta</title>
+</head>
+<body>
+    <h1>Criar Conta</h1>
+    <p>Venha fazer parte dessa história</p>
+    <form action="{{ url_for('login.register') }}" method="POST">
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Senha:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Criar Conta</button>
+         {% if error %}
+          <p style="color:red;">{{ error }}</p>
+       {% endif %}
+    </form>
+    <br>
+    <a href="{{ url_for('login.exibir_formulario') }}">Já possui conta?</a>
+</body>
+</html>

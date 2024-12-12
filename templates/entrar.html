@@ -7,17 +7,22 @@
 </head>
 <body>
     <div>
-        <h1>Crie sua conta</h1> <br>
-        <p>Criar uma conta permite que você possa adicionar e editar informações</p>
+        <h1>Acesse sua conta</h1> <br>
+        <p>Acessar sua conta permite q você possa criar e editar informações </p>
     </div>
     <div>
-        <form action="{{ url_for('login.entar') }}" method="POST">
+        <form action="{{ url_for('login.acessar_conta') }}" method="POST">
             <label for="email">Email:</label><br>
             <input type="text" id="email" name="email" required><br><br>
 
             <label for="password">Senha:</label><br>
             <input type="password" id="password" name="password" required><br><br>
+            <button type="submit">Entrar </button>
         </form>
+        </br>
+        <a href="{{ url_for('login.register') }}">Não tem conta?</a>
     </div>
+    </br>
+    <a href="/">Voltar ao Home</a> <br>
 </body>
 </html>
