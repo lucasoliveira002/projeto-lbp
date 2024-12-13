@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inteligência Artificial</title>
+    <style>
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .input-area{
+          display:flex;
+          flex-direction:column
+        }
+        .input-area input {
+             padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .input-area button {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .response-area {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 100px; /* Define uma altura mínima para a área de resposta */
+            overflow-y: auto;
+            word-break: break-word
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inteligência Artificial da WIKI  IFSP</h1>
+        <h3>Está com alguns defeitos</h3>
+        <p>Faça uma pergunta:</p>
+        <div class="input-area">
+            <input type="text" id="question" placeholder="Digite sua pergunta">
+           <button onclick="makeRequest()">Enviar</button>
+        </div>
+        <div class="response-area" id="response">
+
+        </div>
+
+        <a href="/">Voltar ao Home</a>
+    </div>
+     <script>
+     async function makeRequest() {
+         const question = document.getElementById('question').value
+          const responseArea = document.getElementById('response');
+         responseArea.innerHTML = "Carregando..."
+         try{
+            const res = await fetch('/ia/ia_response', {
+                method: 'POST',
+                 headers: {
+                  'Content-Type': 'application/json'
+                },
+               body: JSON.stringify({ question: question })
+            })
+              if(!res.ok) {
+              const message = `Erro: ${res.status}`;
+                 throw new Error(message);
+            }
+             const data = await res.json()
+            responseArea.innerHTML = data.response;
+
+        } catch(error) {
+         responseArea.innerHTML = error.message
+        }
+
+    }
+    </script>
+</body>
+</html>
