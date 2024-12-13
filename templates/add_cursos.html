@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adicionar Curso</title>
+</head>
+<body>
+    <h1>Adicionar Novo Curso</h1>
+    <form action="{{ url_for('cursos.add_curso') }}" method="POST">
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="tipo">Tipo:</label><br>
+        <input type="tipo" id="tipo" name="tipo" required><br><br>
+
+        <label for="descricao">Descrição:</label><br>
+        <textarea id="descricao" name="descricao" required></textarea><br><br>
+
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <a href="/cursos/cursos">Voltar à lista</a>
+</body>
+</html>

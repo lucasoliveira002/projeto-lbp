@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session
 from controllers.professores_controller import professores_bp
 from controllers.login_controller import login_bp
+from controllers.cursos_controller import cursos_bp
 from database import init_db
 import os
 
@@ -13,6 +14,7 @@ def pagina_inicial():
 
 app.register_blueprint(professores_bp, url_prefix='/professores')
 app.register_blueprint(login_bp, url_prefix='/login')
+app.register_blueprint(cursos_bp, url_prefix='/cursos')
 
 
 if __name__ == "__main__":

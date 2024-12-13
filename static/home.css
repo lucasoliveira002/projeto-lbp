@@ -1,9 +1,53 @@
-header {
-    background-color: rgb(55, 207, 98);
-    height: 40vh;
-    width: 100%;
+body {
+    background-color: #f0f0f0;
+    display: flex; /* Adiciona flexbox para controlar o layout */
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
     display: flex;
-    align-items: center; 
-    padding: 0 20px;
-    position: relative;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: flex-start; /* Alinha os elementos à esquerda */
+    background-color: white;
+    margin-top: 5px; /* Aumenta a margem superior */
+    margin-bottom: 50px;
+    max-width: 900px; /* Limita a largura para evitar layouts quebrados em telas menores */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /*Adiciona uma sombra suave */
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container h2 { /* Estilo para o título "Quem Somos?" */
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.container p, .container ul {
+    margin-bottom: 25px; /* Maior espaçamento entre parágrafos e listas */
+    line-height: 1.6;
+}
+
+.container ul { /* Estilo para a lista de valores */
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.container ul li {
+    margin-bottom: 8px;
+}
+
+body > a {
+  align-self: flex-start;
+  margin-left: 20px;
+}
+
+.container > p:last-child {
+    margin-bottom: 0; /* Remove o espaçamento da última frase para ficar mais agradável*/
 }

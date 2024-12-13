@@ -8,6 +8,8 @@ class User(db.Model):
     name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     senha = db.Column(db.String(128), nullable=False)  # Armazena o hash da senha
+    profile_picture = db.Column(db.String(255), nullable=True)  # Novo campo para a foto de perfil
+
 
     def __repr__(self):
         return f'<User id={self.id}, name={self.name}, email={self.email}>'

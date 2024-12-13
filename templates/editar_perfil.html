@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Perfil</title>
+</head>
+<body>
+    <h1>Editar Perfil</h1>
+    <form method="POST" action="{{ url_for('login.editar_perfil') }}" enctype="multipart/form-data">
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name" value="{{ user.name }}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required><br><br>
+
+        <label for="profile_picture">Foto de Perfil:</label><br>
+        <input type="file" id="profile_picture" name="profile_picture"><br><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+    <br>
+    {% if user.profile_picture %}
+        <img src="{{ url_for('static', filename=user.profile_picture) }}" alt="Foto de Perfil" style="max-width: 100px;">
+    {% endif %}
+</body>
+</html>

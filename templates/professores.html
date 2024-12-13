@@ -4,33 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professores</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <header>
+        <div>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/images.png') }}" alt="">
+            </div>
+            <div class="texto">
+                <h1>WIKI DO IFSP</h1>
+                <p>Seja bem vindo!!!</p>
+            </div>
+            <div class="registrar">
+                {% if 'user_id' in session %}
+                    <img src="{{ url_for('static', filename=session.get('profile_picture', 'images/default_profile.png')) }}" alt="Foto de Perfil" style="max-width: 50px;border-radius: 50%;">
+
+                    <a href="{{ url_for('login.logout') }}">Sair</a> <br>
+                    <a href="{{ url_for('login.editar_perfil') }}">Editar Conta</a>
+                {% else %}
+                <a href="{{ url_for('login.exibir_formulario') }}">Entrar</a> <br>
+                <a href="{{ url_for('login.register') }}">Não tem conta?</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    <br><br><br>
     <h1>Professores</h1>
-    <ul> 
-        {% for Teacher in teachers %} 
-            <li> <b>Nome:</b> {{ Teacher.name }} <br> <b>Email:</b> {{ Teacher.email }} <br> <b>Idade:</b> {{ Teacher.idade }} <br> <b>Descrição:</b> {{ Teacher.descricao }} <br>
-                 <a href="{{ url_for('professores.edit_teacher', id=Teacher.id) }}">Editar</a>
+    <ul>
+        {% for Teacher in teachers %}
+            <li>
+                <b>Nome:</b> {{ Teacher.name }} <br>
+                <b>Email:</b> {{ Teacher.email }} <br>
+                <b>Idade:</b> {{ Teacher.idade }} <br>
+                <b>Descrição:</b> {{ Teacher.descricao }} <br>
+                <a href="{{ url_for('professores.edit_teacher', id=Teacher.id) }}">Editar</a>
                 {% if session.user_id == Teacher.user_id %}  <!-- Verifica se o usuário é o criador -->
                     <a href="{{ url_for('professores.delete_teacher', id=Teacher.id) }}">Excluir</a>
                 {% endif %}
                 <br><br>
-            </li> 
-        {% endfor %} 
+            </li>
+        {% endfor %}
     </ul>
     <a href="{{ url_for('professores.exibir_formulario_add_teacher') }}">Adicionar Novo Professor</a>
-  <br><br>
+    <br><br>
     <div>
-    <h2>Comentários</h2>
-     {% for comment in comments %}
+        <h2>Comentários</h2>
+        {% for comment in comments %}
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            {% if comment.user.profile_picture %}
+            <img src="{{ url_for('static', filename=comment.user.profile_picture) }}" alt="Foto de Perfil" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/default_profile.png') }}" alt="Foto de Perfil Padrão" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            {% endif %}
             <p><strong>{{ comment.user.name }}:</strong> {{ comment.conteudo }}</p>
+        </div>
         {% endfor %}
-    <form method="post">
-       <textarea name="conteudo" rows="4" cols="50" required></textarea>
-      <br>
-      <button type="submit">Enviar comentário</button>
-    </form>
-  </div>
-    <a href="/">Voltar ao Home</a> <br>
+        <form method="post">
+            <textarea name="conteudo" rows="4" cols="50" required></textarea>
+            <br>
+            <button type="submit">Enviar comentário</button>
+        </form>
+    </div>
+    <a href="/">Voltar ao Home</a>
+    <br>
 </body>
 </html>

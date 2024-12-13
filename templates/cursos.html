@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+</head>
+<body>
+    <h1>Cursos do IFSP</h1>
+    <p>O IFSP oferece uma gama de possibilidades para quem está querendo se especializar numa área, tendo tanto cursos de barechado e técnico integrado</p>
+    <p>Aqui você pode adicionar e editar informações sobre os cursos que conhece</p>
+
+    <ul> 
+        {% for Curso in cursos %} 
+            <li> <b>Nome:</b> {{ Curso.name }} <br> <b>Tipo:</b> {{ Curso.tipo }} <br> <b>Descrição:</b> {{ Curso.descricao }} <br>
+                 <a href="{{ url_for('cursos.edit_curso', id=Curso.id) }}">Editar</a>
+                {% if session.user_id == Curso.user_id %}  <!-- Verifica se o usuário é o criador -->
+                    <a href="{{ url_for('cursos.delete_curso', id=Curso.id) }}">Excluir</a>
+                {% endif %}
+                <br><br>
+            </li> 
+        {% endfor %} 
+    </ul>
+    <a href="{{ url_for('cursos.exibir_formulario_add_curso') }}">Adicionar Novo Curso</a>
+    <br>
+
+    <div>
+        <h2>Comentários</h2>
+        {% for comment in comments %}
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            {% if comment.user.profile_picture %}
+            <img src="{{ url_for('static', filename=comment.user.profile_picture) }}" alt="Foto de Perfil" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/default_profile.png') }}" alt="Foto de Perfil Padrão" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            {% endif %}
+            <p><strong>{{ comment.user.name }}:</strong> {{ comment.conteudo }}</p>
+        </div>
+        {% endfor %}
+        <form method="post">
+            <textarea name="conteudo" rows="4" cols="50" required></textarea>
+            <br>
+            <button type="submit">Enviar comentário</button>
+        </form>
+    </div>
+    <a href="/">Voltar ao Home</a> <br>
+</body>
+</html>

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="static/home.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
 </head>
+
 <body>
     <header>
         <div>
             <div class="logo">
-                <img src="static/images/images.png" alt="">
+                <img src="{{ url_for('static', filename='images/images.png') }}" alt="">
             </div>
             <div class="texto">
                 <h1>WIKI DO IFSP</h1>
@@ -18,15 +21,48 @@
             </div>
             <div class="registrar">
                 {% if 'user_id' in session %}
-                     <a href="{{ url_for('login.logout') }}">Sair</a>
+                     <img src="{{ url_for('static', filename=session.get('profile_picture', 'images/default_profile.png')) }}" alt="Foto de Perfil" style="max-width: 50px;border-radius: 50%;">
+        
+                     <a href="{{ url_for('login.logout') }}">Sair</a> <br>
+                     <a href="{{ url_for('login.editar_perfil') }}">Editar Conta</a>
                 {% else %}
                   <a href="{{ url_for('login.exibir_formulario') }}">Entrar</a> <br>
                    <a href="{{ url_for('login.register') }}">Não tem conta?</a>
                 {% endif %}
             </div>
-        </div>
     </header>
+
     <br><br><br>
-    <a href="/professores/professores">Ver professores</a>
+    <a href="/professores/professores">Ver professores</a> <br>
+    <a href="/cursos/cursos">Cursos Oferecidos no IFSP</a> <br>
+    <a href="https://drive.google.com/drive/folders/12LMVbcRsE61cpPIc8XaqZRs0xmz0d4J6?usp=sharing">Materiais de Estudo</a> <br>
+    <a href="https://www.ifsp.edu.br/">Site Oficial da Escola</a>
+
+    <center>
+        <div class="container">
+            <h2>Quem Somos?</h2>
+            <p>Somos um grupo de estudantes do Instituto Federal de Educação, Ciência e Tecnologia de São Paulo (IFSP),
+            unidos pelo objetivo de compartilhar conhecimento, experiências e recursos que enriquecem nossa jornada acadêmica
+            e pessoal.</p>
+
+            <p>Esta wiki é um espaço colaborativo criado por e para os alunos, onde reunimos informações úteis sobre a vida no IFSP,
+            como materiais de estudo, dicas para projetos, eventos, histórias e tudo mais que fortaleça nossa comunidade.</p>
+                
+            <p>Acreditamos no poder da troca de conhecimentos e no impacto positivo que podemos gerar quando trabalhamos juntos.
+            Nossa diversidade de cursos, campi e interesses é nossa maior força, e essa plataforma reflete a riqueza de ideias
+            e talentos que temos entre nós.</p>
+            </br>
+            <h3>Nosso Objetivo</h3>
+                <ul>
+                    <li>Facilitar o acesso a informações importantes para os estudantes;</li>
+                    <li>Incentivar a colaboração e a troca de experiências;</li>
+                    <li>Criar um ambiente acolhedor e inclusivo para todos os alunos do IFSP.</li>
+                </ul>
+                
+            <p>Esta wiki é um reflexo do espírito coletivo que nos une como estudantes do IFSP. Se você também quer contribuir,
+            junte-se a nós e faça parte dessa construção!</p>
+        </div>
+    </center>
 </body>
+
 </html>
