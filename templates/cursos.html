@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cursos</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
     {% extends "base.html" %}
     {% block content %}
@@ -20,10 +22,11 @@
             </div>
             <div class="registrar">
                 {% if 'user_id' in session %}
-                    <img src="{{ url_for('static', filename=session.get('profile_picture', 'images/default_profile.png')) }}" alt="Foto de Perfil" style="max-width: 50px;border-radius: 50%;">
+                <img src="{{ url_for('static', filename=session.get('profile_picture', 'images/default_profile.png')) }}"
+                    alt="Foto de Perfil" style="max-width: 50px;border-radius: 50%;">
 
-                    <a href="{{ url_for('login.logout') }}">Sair</a> <br> <br>
-                    <a href="{{ url_for('login.editar_perfil') }}">Editar Conta</a>
+                <a href="{{ url_for('login.logout') }}">Sair</a> <br> <br>
+                <a href="{{ url_for('login.editar_perfil') }}">Editar Conta</a>
                 {% else %}
                 <a href="{{ url_for('login.exibir_formulario') }}">Entrar</a> <br><br>
                 <a href="{{ url_for('login.register') }}">Não tem conta?</a>
@@ -32,19 +35,21 @@
         </div>
     </header>
     <h1>Cursos do IFSP</h1>
-    <p>O IFSP oferece uma gama de possibilidades para quem está querendo se especializar numa área, tendo tanto cursos de barechado e técnico integrado</p>
+    <p>O IFSP oferece uma gama de possibilidades para quem está querendo se especializar numa área, tendo tanto cursos
+        de barechado e técnico integrado</p>
     <p>Aqui você pode adicionar e editar informações sobre os cursos que conhece</p>
 
-    <ul> 
-        {% for Curso in cursos %} 
-            <li> <b>Nome:</b> {{ Curso.name }} <br> <b>Tipo:</b> {{ Curso.tipo }} <br> <b>Descrição:</b> {{ Curso.descricao }} <br>
-                 <a href="{{ url_for('cursos.edit_curso', id=Curso.id) }}">Editar</a>
-                {% if session.user_id == Curso.user_id %}  <!-- Verifica se o usuário é o criador -->
-                    <a href="{{ url_for('cursos.delete_curso', id=Curso.id) }}">Excluir</a>
-                {% endif %}
-                <br><br>
-            </li> 
-        {% endfor %} 
+    <ul>
+        {% for Curso in cursos %}
+        <li> <b>Nome:</b> {{ Curso.name }} <br> <b>Tipo:</b> {{ Curso.tipo }} <br> <b>Descrição:</b> {{ Curso.descricao
+            }} <br>
+            <a href="{{ url_for('cursos.edit_curso', id=Curso.id) }}">Editar</a>
+            {% if session.user_id == Curso.user_id %} <!-- Verifica se o usuário é o criador -->
+            <a href="{{ url_for('cursos.delete_curso', id=Curso.id) }}">Excluir</a>
+            {% endif %}
+            <br><br>
+        </li>
+        {% endfor %}
     </ul>
     <a href="{{ url_for('cursos.exibir_formulario_add_curso') }}">Adicionar Novo Curso</a>
     <br>
@@ -54,9 +59,11 @@
         {% for comment in comments %}
         <div style="display: flex; align-items: center; margin-bottom: 10px;">
             {% if comment.user.profile_picture %}
-            <img src="{{ url_for('static', filename=comment.user.profile_picture) }}" alt="Foto de Perfil" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            <img src="{{ url_for('static', filename=comment.user.profile_picture) }}" alt="Foto de Perfil"
+                style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
             {% else %}
-            <img src="{{ url_for('static', filename='images/default_profile.png') }}" alt="Foto de Perfil Padrão" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            <img src="{{ url_for('static', filename='images/default_profile.png') }}" alt="Foto de Perfil Padrão"
+                style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
             {% endif %}
             <p><strong>{{ comment.user.name }}:</strong> {{ comment.conteudo }}</p>
         </div>
@@ -70,4 +77,5 @@
     <a href="/">Voltar ao Home</a> <br>
     {% endblock %}
 </body>
+
 </html>

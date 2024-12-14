@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from database import db
 from models.User import User
 from werkzeug.utils import secure_filename
@@ -19,6 +19,7 @@ def acessar_conta():
         user = User.query.filter_by(email=email).first()
         if user and user.check_password(password):
             session['user_id'] = user.id
+            flash('Bem vindo de volta!', 'sucess')
             return redirect(url_for('pagina_inicial'))
         else:
             return render_template('entrar.html', error="Email ou senha incorretos")
@@ -38,12 +39,14 @@ def register():
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
+        flash('Sua conta foi criada com sucesso!', 'sucess')
         return redirect(url_for('login.acessar_conta'))
     return render_template('register.html')
 
 @login_bp.route('/logout')
 def logout():
     session.pop('user_id', None)
+    flash('Você saiu... LAMENTÁVEL', 'dark')
     return redirect(url_for('pagina_inicial'))
 
 @login_bp.route('/exibir_formulario')
