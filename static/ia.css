@@ -1,0 +1,42 @@
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+.input-area{
+  display:flex;
+  flex-direction:column
+}
+.input-area input {
+     padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.input-area button {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #156f05;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.response-area {
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 100px; /* Define uma altura mínima para a área de resposta */
+    overflow-y: auto;
+    word-break: break-word
+}
+
+body {
+    background-image: url('https://img.freepik.com/premium-photo/ai-artificial-intelligence-technology-microchip-background_951586-29705.jpg');
+    background-size: cover; /* Ajusta para cobrir toda a tela */
+    background-repeat: repeat; /* Evita repetição da imagem */
+    background-position: center; /* Centraliza a imagem */
+  }
+  

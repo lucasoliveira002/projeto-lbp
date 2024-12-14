@@ -4,6 +4,7 @@ from controllers.login_controller import login_bp
 from controllers.cursos_controller import cursos_bp
 from controllers.ia_controller import ia_bp
 from database import init_db
+
 import os
 
 app = Flask(__name__)

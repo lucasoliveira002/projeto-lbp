@@ -56,3 +56,17 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li {
      /* width: auto; garante que a proporção da imagem não seja quebrada */
   
   }
+
+  header .registrar a {
+    background-color: #e0e0e0; /* Cor de fundo */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Borda arredondada */
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    color: #333; /* Cor do texto */
+}
+
+  header .registrar a:hover {
+    background-color: #c5c5c5;
+    text-decoration: underline;
+  }
+
