@@ -19,4 +19,3 @@ class Teacher(db.Model):
         
     def toJson(self):
         return {"id": self.id, "name": self.name, "email": self.email, "idade": self.idade, "descricao": self.descricao, "user_id": self.user_id}
-    

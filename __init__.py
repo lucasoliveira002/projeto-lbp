@@ -1,14 +1,21 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 from controllers.professores_controller import professores_bp
 from controllers.login_controller import login_bp
 from controllers.cursos_controller import cursos_bp
 from controllers.ia_controller import ia_bp
 from database import init_db
-
 import os
+from middleware import login_required_middleware
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+@app.before_request
+def middleware_handler():
+    if request.endpoint in ('professores.add_teacher', 'professores.edit_teacher',
+    'professores.delete_teacher', 'cursos.add_curso',
+    'cursos.edit_curso', 'cursos.delete_curso'):
+        return login_required_middleware()
 
 @app.route("/")
 def pagina_inicial():

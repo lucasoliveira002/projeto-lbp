@@ -73,4 +73,3 @@ def delete_curso(id):
     db.session.delete(curso)
     db.session.commit()
     return redirect(url_for('cursos.exibir_cursos'))
-

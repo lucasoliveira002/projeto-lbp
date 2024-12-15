@@ -18,4 +18,3 @@ class Curso(db.Model):
         
     def toJson(self):
         return {"id": self.id, "name": self.name, "tipo": self.tipo, "descricao": self.descricao, "user_id": self.user_id}
-    
