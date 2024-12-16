@@ -1,7 +1,7 @@
 # projeto-lbp
-Repositório para editar o projeto de laboratório de programação
-criar um arquivo '.env' na raiz com o seguinte conteudo ' GOOGLE_API_KEY=AIzaSyCKJqgmMxjxkYWQzFVXpXSK4X2UgJRUJbI '
-isso fará com que a IA funciona
+Repositório para editar o projeto de laboratório de programação <br>
+criar um arquivo '.env' na raiz com o seguinte conteudo ' GOOGLE_API_KEY=AIzaSyCKJqgmMxjxkYWQzFVXpXSK4X2UgJRUJbI ' <br>
+isso fará com que a IA funciona <br>
 
 # no terminal
 python -m venv nome_do_ambiente
