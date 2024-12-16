@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Painel de Administração{% endblock %}
+
+{% block content %}
+    <h1>Bem-vindo ao Painel de Administração!</h1>
+    <p>Aqui você pode administrar seu site.</p>
+    <ul>
+        <li><a href="{{ url_for('admin.listar_usuarios') }}">Listar Usuários</a></li>
+         <li><a href="{{ url_for('admin.add_admin') }}">Adicionar Admins</a></li>
+         <!-- Adicione outras opções aqui -->
+    </ul>
+{% endblock %}

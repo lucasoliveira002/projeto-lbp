@@ -15,6 +15,21 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# controllers/login_controller.py
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from werkzeug.utils import secure_filename
+from repository.user_repository import UserRepository
+from repository.admin_repository import AdminRepository
+
+login_bp = Blueprint('login', __name__)
+user_repository = UserRepository()
+admin_repository = AdminRepository()
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @login_bp.route('/acessar_conta', methods=['GET', 'POST'])
 def acessar_conta():
     if request.method == 'POST':
@@ -25,18 +40,59 @@ def acessar_conta():
         if user and user.check_password(password):
             session['user_id'] = user.id
             flash('Bem-vindo de volta!', 'success')
-            return redirect(url_for('pagina_inicial'))
+            return redirect(url_for('pagina_inicial'))  # Redireciona para a home
         
         admin = admin_repository.get_admin_by_email(email)
         if admin and admin.check_password(password):
-            session['user_id'] = admin.id  # Sessão salva como admin
+            session['user_id'] = admin.id
             flash('Bem-vindo de volta!', 'success')
-            return redirect(url_for('pagina_inicial'))
+            return redirect(url_for('pagina_inicial'))  # Redireciona para a home
 
         flash('Email ou senha incorretos', 'danger')
         return render_template('entrar.html', error="Email ou senha incorretos")
 
     return render_template('entrar.html')
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        user = user_repository.get_user_by_email(email)
+        if user and user.check_password(password):
+            session['user_id'] = user.id
+            flash('Bem-vindo de volta!', 'success')
+            return redirect(url_for('pagina_inicial'))  # Redireciona para a home
+        
+        admin = admin_repository.get_admin_by_email(email)
+        if admin and admin.check_password(password):
+            session['user_id'] = admin.id
+            flash('Bem-vindo de volta!', 'success')
+            return redirect(url_for('admin.painel'))  # Redireciona para o painel do admin
+        
+        flash('Email ou senha incorretos', 'danger')
+        return render_template('entrar.html', error="Email ou senha incorretos")
+
+    return render_template('entrar.html')
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        user = user_repository.get_user_by_email(email)
+        if user and user.check_password(password):
+            session['user_id'] = user.id
+            flash('Bem-vindo de volta!', 'success')
+            return redirect(url_for('pagina_inicial'))
+
+        admin = admin_repository.get_admin_by_email(email)
+        if admin and admin.check_password(password):
+            session['user_id'] = admin.id
+            flash('Bem-vindo de volta!', 'success')
+            return redirect(url_for('admin.painel')) # Redireciona para o painel de admin
+
+        flash('Email ou senha incorretos', 'danger')
+        return render_template('entrar.html', error="Email ou senha incorretos")
+
+    return render_template('entrar.html')
+
 
 @login_bp.route('/register', methods=['GET', 'POST'])
 def register():

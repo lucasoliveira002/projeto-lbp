@@ -70,5 +70,25 @@
     <a href="/">Voltar ao Home</a>
     <br>
     {% endblock %}
+
+    <tbody>
+        {% for teacher in teachers %}
+           <tr>
+             <td>{{ teacher.id }}</td>
+             <td>{{ teacher.name }}</td>
+             <td>{{ teacher.email }}</td>
+             <td>{{ teacher.idade }}</td>
+             <td>{{ teacher.descricao }}</td>
+               {% if 'user_id' in session and teacher.user_id == session['user_id'] or  'user_id' in session and admin %}
+                   <td>
+                       <a class="btn btn-primary" href="{{ url_for('professores.edit_teacher', id=teacher.id) }}">Editar</a>
+                       <a class="btn btn-danger" href="{{ url_for('professores.delete_teacher', id=teacher.id) }}">Excluir</a>
+                       <!-- Se o usuário for um admin -->
+                            <a class="btn btn-danger" href="{{ url_for('admin.delete_teacher', id=teacher.id) }}">Excluir(Admin)</a>
+                   </td>
+               {% endif %}
+           </tr>
+           {% endfor %}
+       </tbody>
 </body>
 </html>
