@@ -4,10 +4,10 @@ criar um arquivo '.env' na raiz com o seguinte conteudo ' GOOGLE_API_KEY=AIzaSyC
 isso fará com que a IA funciona <br>
 
 # no terminal
-python -m venv nome_do_ambiente
-nome_do_ambiente\Scripts\activate
-pip install flask sqlalchemy python-dotenv
-pip install google-generativeai
-pip install flask-sqlalchemy
+python -m venv nome_do_ambiente <br>
+nome_do_ambiente\Scripts\activate <br>
+pip install flask sqlalchemy python-dotenv <br>
+pip install google-generativeai <br>
+pip install flask-sqlalchemy <br>
 
 Isso fará com que possa ser utilizado o projeto de uma maneira que funcione
